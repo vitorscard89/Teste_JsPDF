@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button,  } from 'antd';
 import jsPDF from 'jspdf'
 import api from '../../services/api';
+import './style.css';
 
 import 'jspdf-autotable';
 
@@ -50,7 +51,9 @@ export default class Main extends Component{
 
   render() {
     return(
-      <Button onClick={this.jsPdfGenerator} type="primary"> Generate PDF </Button> 
+      <div class="container">
+        <button class="button" onClick={this.jsPdfGenerator}>Gerar PDF</button>
+      </div>      
      )
   }
 }
