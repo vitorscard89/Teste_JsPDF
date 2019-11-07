@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "antd";
 import * as jsPDF from "jspdf";
 import api from "../../services/api";
 import "./style.css";
@@ -50,41 +49,37 @@ export default class Main extends Component {
   };
 
   jsPdfGeneratorHtml = () => {
+    const specialElementHandlers = function(element, renderer) {
+      return true;
+    };
+
+    const margins = {
+      top: 50,
+      bottom: 50,
+      left: 50,
+      width: 900,
+      height: 600
+    };
+
     const teste = `
-    <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>Your Canvas</title>
+    <div width="950" height="600">
+        <table>
+          <tr>
+              <td>Chinna</td>
+          </tr>
+        </table> 
+        <br />
+        <hr>
+    </div>
 
-<style type="text/css">container {  }
-imageTemp { position: absolute; top: 1px; left: 1px; }
-</style>
+    <canvas id="myCanvas" width="200" height="100" style="border:1px solid;">
+    </canvas>
 
-</head>
-<body>
-<canvas id="imageView" width="600" height="500"></canvas>
+   `;
 
-<script type="text/javascript">
-var canvas, context, canvaso, contexto;
-canvaso = document.getElementById('imageView');
-context = canvaso.getContext('2d');
-context.lineWidth = 5;
-
-context.strokeStyle = '#000000';
-context.beginPath();
-context.moveTo(160, 68);
-
-context.strokeStyle = '#000000';
-context.strokeRect(74, 63, 416, 225);
-</script>
-</body>
-</html>
-    
-    <div id="testdiv" style="border: solid 2px; font-size: 50px;"><div>teste1</div></div>
-    `;
-
-    var doc = new jsPDF();
-    doc.fromHTML(teste, 20, 20, {
-      width: 500
+    var doc = new jsPDF("p", "pt", "letter");
+    doc.fromHTML(teste, 120, 20, {
+      elementHandlers: specialElementHandlers
     });
     doc.save("testeHtml.pdf");
   };
@@ -94,9 +89,6 @@ context.strokeRect(74, 63, 416, 225);
       <div class="container">
         <div className="testdiv">
           <h1>Teste1</h1>
-          <h2>Teste2</h2>
-          <h3>Teste2</h3>
-          <h4>Teste4</h4>
         </div>
         <p>
           <button class="button" onClick={this.jsPdfGenerator}>
