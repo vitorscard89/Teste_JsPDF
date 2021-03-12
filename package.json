@@ -5,7 +5,7 @@
   "dependencies": {
     "antd": "^3.25.0",
     "axios": "^0.19.0",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.2.10",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
